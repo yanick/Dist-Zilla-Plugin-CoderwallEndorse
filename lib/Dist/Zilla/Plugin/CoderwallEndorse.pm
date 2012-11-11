@@ -1,4 +1,4 @@
-package Dist::Zilla::Plugin::ReadmeMarkdown::CoderwallEndorse;
+package Dist::Zilla::Plugin::CoderwallEndorse;
 # ABSTRACT: Adds a Coderwall 'endorse' button to README Markdown file
 
 =head1 SYNOPSIS
@@ -8,7 +8,7 @@ package Dist::Zilla::Plugin::ReadmeMarkdown::CoderwallEndorse;
     ; typically, to create the README off the main module
     [ReadmeMarkdownFromPod]
 
-    [ReadmeMarkdow::CoderwallEndorse]
+    [CoderwallEndorse]
     users = coderwall_name : author name, other_cw_name : other author
 
 =head1 DESCRIPTION
@@ -34,7 +34,7 @@ use List::Util qw/ first /;
 
 with qw/
     Dist::Zilla::Role::Plugin
-    Dist::Zilla::Role::FileMunger
+    Dist::Zilla::Role::InstallTool
 /;
 
 has users => (
@@ -63,18 +63,19 @@ has mapping => (
     },
 );
 
-sub munge_files {
+sub setup_installer {
     my $self = shift;
 
-    my ( $readme ) = first { $_->name eq 'README.mkdn' } 
+    warn join " ",  map { $_->name } @{ $self->zilla->files };
+    my $readme = first { $_->name eq 'README.mkdn' } 
                            @{ $self->zilla->files } or return;
 
     my $new_content;
 
     for my $line ( split /\n/, $readme->content ) {
-        if( $line=~ /^# AUTHOR/../^#/ ) {
+        if ( $line=~ /^# AUTHOR/ ... $line =~ /^#/ ) {
             for my $auth ( $self->authors ) {
-                next unless index $line, $auth > -1;
+                next if -1 == index $line, $auth;
                 $line .= sprintf " [![endorse](http://api.coderwall.com/%s/endorsecount.png)](http://coderwall.com/%s)",
                                 ( $self->cd_user($auth) ) x 2;
 
