@@ -1,19 +1,12 @@
 Revision history for Dist-Zilla-Plugin-CoderwallEndorse
 
-{{$NEXT}}
- [API CHANGES]
-
+0.1.2 2012-11-11
  [BUG FIXES]
- - Typo in POD, and added a link to an example of the output
-    of the plugin (thanks to Mr. Spaz)
-
- [DOCUMENTATION]
-
- [ENHANCEMENTS]
-
- [NEW FEATURES]
+ - Typo in POD, and added a link to an example of the output of the plugin
+   (thanks to Mr. Spaz)
 
  [STATISTICS]
+ - code churn: 2 files changed, 12 insertions(+), 2 deletions(-)
 
 0.1.1 2012-11-11
  [BUG FIXES]
