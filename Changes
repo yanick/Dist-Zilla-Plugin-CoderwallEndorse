@@ -1,18 +1,11 @@
 Revision history for Dist-Zilla-Plugin-CoderwallEndorse
 
-{{$NEXT}}
- [API CHANGES]
-
+0.1.1 2012-11-11
  [BUG FIXES]
  - Moving name for Dist::Zilla::Plugin::CoderwallEndorse
 
- [DOCUMENTATION]
-
- [ENHANCEMENTS]
-
- [NEW FEATURES]
-
  [STATISTICS]
+ - code churn: 5 files changed, 18 insertions(+), 6 deletions(-)
 
 0.1.0 2012-11-11
 

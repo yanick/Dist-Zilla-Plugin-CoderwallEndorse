@@ -1,0 +1,37 @@
+This file contains message digests of all files listed in MANIFEST,
+signed via the Module::Signature module, version 0.68.
+
+To verify the content in this distribution, first make sure you have
+Module::Signature installed, then type:
+
+    % cpansign -v
+
+It will check each file's integrity, as well as the signature's
+validity.  If "==> Signature verified OK! <==" is not displayed,
+the distribution may already have been compromised, and you should
+not run its Makefile.PL or Build.PL.
+
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA1
+
+SHA1 d5a0b6b5d8d6289e2c2245851e9b31d87872d592 AUTHOR_PLEDGE
+SHA1 05b49e8176ff4eb70e048f0a7b2e584553bc234a Build.PL
+SHA1 12d7ee5516ed765e128fd9f4571f9f6c46b7450f Changes
+SHA1 b75c18e953d67dbccee6d41f182c0a692021e8b8 INSTALL
+SHA1 42a9b278ca94a31df654fec186efe74ba9565d7e LICENSE
+SHA1 fe0d3c7aa88f4ea0495f665563f57730178e5c7a MANIFEST
+SHA1 4357c3fb3f42d2cf050b0333ff82235aacd76f26 META.json
+SHA1 a2c2af95d8b9596093e6295985bcd0a5ad8f0b29 META.yml
+SHA1 3dd3a0d236ea5ae7e53cf9e5e98292b096634772 README
+SHA1 28048000baa0f419660938c9447b83dfab8a1acf README.mkdn
+SHA1 a7ebb5619beb81f079274f3f0a2d0bb452f89deb lib/Dist/Zilla/Plugin/CoderwallEndorse.pm
+SHA1 3cbe905b92fbc69d59a06031d5ce6c837b352aa2 t/00-compile.t
+SHA1 473906254ecd96009795d4b7fbc82fac48c03ecd t/000-report-versions.t
+SHA1 ec3f84bfd7a9ce3246e7592f4134100c6b5ce02b xt/release/unused-vars.t
+-----BEGIN PGP SIGNATURE-----
+Version: GnuPG v1.4.11 (GNU/Linux)
+
+iEYEARECAAYFAlCgTEEACgkQ34Hwf+GwC4yrgQCguMFh2ZBUThsHbwwgntMxm+pr
+DrUAni9Bzk10N3YLGuHmmO6zu8BOglw+
+=nQle
+-----END PGP SIGNATURE-----
