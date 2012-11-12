@@ -66,7 +66,6 @@ has mapping => (
 sub setup_installer {
     my $self = shift;
 
-    warn join " ",  map { $_->name } @{ $self->zilla->files };
     my $readme = first { $_->name eq 'README.mkdn' } 
                            @{ $self->zilla->files } or return;
 
