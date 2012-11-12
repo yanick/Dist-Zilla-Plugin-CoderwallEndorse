@@ -1,7 +1,18 @@
-Revision history for Dist-Zilla-Plugin-ReadmeMarkdown-CoderwallEndorse
+Revision history for Dist-Zilla-Plugin-CoderwallEndorse
 
 {{$NEXT}}
+ [API CHANGES]
 
-0.1.0     2012-11-11
+ [BUG FIXES]
+ - Moving name for Dist::Zilla::Plugin::CoderwallEndorse
 
-  - First version, unleashed on an unsuspecting world.
+ [DOCUMENTATION]
+
+ [ENHANCEMENTS]
+
+ [NEW FEATURES]
+
+ [STATISTICS]
+
+0.1.0 2012-11-11
+
