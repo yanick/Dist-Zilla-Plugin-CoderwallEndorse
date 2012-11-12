@@ -1,12 +1,11 @@
 Revision history for Dist-Zilla-Plugin-CoderwallEndorse
 
 {{$NEXT}}
-
-0.1.1     2012-11-11
  [API CHANGES]
 
  [BUG FIXES]
- - Moving name for Dist::Zilla::Plugin::CoderwallEndorse
+ - Typo in POD, and added a link to an example of the output
+    of the plugin (thanks to Mr. Spaz)
 
  [DOCUMENTATION]
 
@@ -15,6 +14,10 @@ Revision history for Dist-Zilla-Plugin-CoderwallEndorse
  [NEW FEATURES]
 
  [STATISTICS]
+
+0.1.1 2012-11-11
+ [BUG FIXES]
+ - Moving name for Dist::Zilla::Plugin::CoderwallEndorse
 
 0.1.0 2012-11-11
 

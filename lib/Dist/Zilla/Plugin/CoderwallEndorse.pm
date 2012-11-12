@@ -21,7 +21,12 @@ given.
 
 L<www.coderwall.com>
 
-L<Dist::Zilla::Plugin:::ReadmeMarkdownFromPod>
+L<Dist::Zilla::Plugin::ReadmeMarkdownFromPod>
+
+For an example of what the result of this plugin looks like, see its
+GitHub main page: L<https://github.com/yanick/Dist-Zilla-Plugin-CoderwallEndorse>
+
+Original blog entry: L<http://babyl.dyndns.org/techblog/entry/coderwall-button>
 
 =cut
 
