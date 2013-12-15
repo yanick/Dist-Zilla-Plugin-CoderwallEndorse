@@ -8,12 +8,18 @@ Revision history for Dist-Zilla-Plugin-CoderwallEndorse
  [DOCUMENTATION]
 
  [ENHANCEMENTS]
- - Move the plugin to the dzil file munging phase. 
-    (RT#91409, reported by Karen Etheridge)
 
  [NEW FEATURES]
 
  [STATISTICS]
+
+0.2.0 2013-12-15
+ [ENHANCEMENTS]
+ - Move the plugin to the dzil file munging phase.  (RT#91409, reported by
+   Karen Etheridge)
+
+ [STATISTICS]
+ - code churn: 5 files changed, 133 insertions(+), 16 deletions(-)
 
 0.1.2 2012-11-11
  [BUG FIXES]
