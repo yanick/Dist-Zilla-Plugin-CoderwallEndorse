@@ -9,6 +9,7 @@ package Dist::Zilla::Plugin::CoderwallEndorse;
     [ReadmeMarkdownFromPod]
 
     [CoderwallEndorse]
+    filename = README.mkdn
     users = coderwall_name : author name, other_cw_name : other author
 
 =head1 DESCRIPTION
@@ -19,7 +20,7 @@ given.
 
 =head1 SEE ALSO
 
-L<www.coderwall.com>
+L<http://www.coderwall.com>
 
 L<Dist::Zilla::Plugin::ReadmeMarkdownFromPod>
 
@@ -37,14 +38,22 @@ use Moose;
 
 use List::Util qw/ first /;
 
+use Dist::Zilla::Role::File::ChangeNotification;
+
 with qw/
     Dist::Zilla::Role::Plugin
-    Dist::Zilla::Role::InstallTool
+    Dist::Zilla::Role::FileMunger
 /;
 
 has users => (
     is => 'ro',
     isa => 'Str',
+);
+
+has "filename" => (
+    isa => 'Str',
+    is => 'ro',
+    default => 'README.mkdn',
 );
 
 has mapping => (
@@ -68,18 +77,62 @@ has mapping => (
     },
 );
 
-sub setup_installer {
+has "_last_content" => (
+    isa => 'Str',
+    is => 'rw',
+    default => '',
+);
+
+sub munge_files {
     my $self = shift;
 
-    my $readme = first { $_->name eq 'README.mkdn' } 
-                           @{ $self->zilla->files } or return;
+    my $filename = $self->filename;
+    my( $file ) = grep { $_->name eq $filename } @{ $self->zilla->files }
+        or return $self->log([ "file '%s' not found", $filename ]);
+
+    $self->munge_file($file);
+    $self->watch($file);
+}
+
+sub watch {
+    my( $self, $file ) = @_;
+    
+    Dist::Zilla::Role::File::ChangeNotification->meta->apply($file)
+        unless $file->does('Dist::Zilla::Role::File::ChangeNotification');
+
+    my $plugin = $self;
+    $file->on_changed(sub {
+        my ($self, $newcontent) = @_;
+
+        $self->_content_checksum(0);
+        $self->watch_file;
+
+        # If the new content is actually different, recalculate
+        # the content based on the updates.
+        return if $newcontent eq $plugin->_last_content;
+
+        $plugin->log_debug('someone tried to munge ' . $self->name . ' after we read from it. Making modifications again...');
+        $plugin->munge_file($file);
+    });
+
+    $file->watch_file;
+}
+
+sub munge_file {
+    my( $self, $file ) = @_;
+
+    $self->log_debug([ 'CoderwallEndorse updating contents of %s in dist', $file->name ]);
 
     my $new_content;
 
-    for my $line ( split /\n/, $readme->content ) {
+    for my $line ( split /\n/, $file->content ) {
         if ( $line=~ /^# AUTHOR/ ... $line =~ /^#/ ) {
             for my $auth ( $self->authors ) {
-                next if -1 == index $line, $auth;
+
+                # author not mentioned, or endorse link already there
+                next if -1 == index $line, $auth
+                     or -1 != index $line, '[endorse]';
+
                 $line .= sprintf " [![endorse](http://api.coderwall.com/%s/endorsecount.png)](http://coderwall.com/%s)",
                                 ( $self->cd_user($auth) ) x 2;
 
@@ -88,7 +141,8 @@ sub setup_installer {
         $new_content .= $line."\n";
     }
 
-    $readme->content($new_content);
+    $self->_last_content($new_content);
+    $file->content($new_content);
 }
 
 __PACKAGE__->meta->make_immutable;
