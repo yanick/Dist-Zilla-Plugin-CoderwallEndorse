@@ -1,5 +1,5 @@
 package Dist::Zilla::Plugin::CoderwallEndorse;
-# ABSTRACT: Adds a Coderwall 'endorse' button to README Markdown file
+# ABSTRACT: Adds a Coderwall 'endorse' button to README Markdown file (DEPRECATED)
 
 =head1 SYNOPSIS
 
@@ -13,6 +13,8 @@ package Dist::Zilla::Plugin::CoderwallEndorse;
     users = coderwall_name : author name, other_cw_name : other author
 
 =head1 DESCRIPTION
+
+B<Deprecated>: Coderwall endorse buttons are, alas, not a thing anymore. :-(
 
 If a C<README.mkdn> file is presents, a Coderwall 'endorse' button will be
 added beside author names if a author-name-to-coderwall-user mapping has been
